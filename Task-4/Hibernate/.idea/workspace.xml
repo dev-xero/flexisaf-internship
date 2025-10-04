@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1c83def5-5019-4bd9-b36f-361b421214f5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/github/dev/xero/model/Board.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/github/dev/xero/model/Color.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/github/dev/xero/model/Game.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/github/dev/xero/model/GameResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/github/dev/xero/model/Move.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/github/dev/xero/model/TimeControl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/93e12387-53ec-4e0d-957d-1fda7a25f4ef.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/93e12387-53ec-4e0d-957d-1fda7a25f4ef.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/93e12387-53ec-4e0d-957d-1fda7a25f4ef.xml.tmp" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
