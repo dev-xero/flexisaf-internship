@@ -24,7 +24,7 @@ public class Main {
         game.setWhitePlayer(playerOne);
         game.setBlackPlayer(playerTwo);
         game.setDuration(0);
-        game.setTimeControl(600);
+        game.setTimeControl(TimeControl.RAPID.minutes * MINUTE);
         game.setIsOngoing(true);
         game.setCreatedAt(LocalDateTime.now());
         em.persist(game);
