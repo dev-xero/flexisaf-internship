@@ -2,6 +2,9 @@
 <persistence xmlns="http://java.sun.com/xml/ns/persistence">
     <persistence-unit name="jpa">
         <class>github.dev.xero.model.Player</class>
+        <class>github.dev.xero.model.Board</class>
+        <class>github.dev.xero.model.Game</class>
+        <class>github.dev.xero.model.Move</class>
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
             <property name="hibernate.show_sql" value="true"/>
