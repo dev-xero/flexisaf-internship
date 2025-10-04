@@ -1,10 +1,11 @@
-package config;
+package github.dev.xero.config;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 import java.util.HashMap;
+import java.util.logging.Logger;
 
 /**
  * Configure Hibernate Utility with EntityManager Factory
@@ -13,7 +14,7 @@ public class HibernateConfig {
     private static final EntityManagerFactory emf;
 
     static {
-        HashMap<String, String> overrides = new HashMap<>();
+        HashMap<String, String> properties = new HashMap<>();
 
         String DB_URL = System.getenv("DB_URL");
         String DB_USER = System.getenv("DB_USER");
@@ -24,11 +25,11 @@ public class HibernateConfig {
             System.exit(1);
         }
 
-        overrides.put("jakarta.persistence.jdbc.url", DB_URL);
-        overrides.put("jakarta.persistence.jdbc.user", DB_USER);
-        overrides.put("jakarta.persistence.jdbc.pass", DB_PASS);
+        properties.put("jakarta.persistence.jdbc.url", DB_URL);
+        properties.put("jakarta.persistence.jdbc.user", DB_USER);
+        properties.put("jakarta.persistence.jdbc.password", DB_PASS);
 
-        emf = Persistence.createEntityManagerFactory("jpa", overrides);
+        emf = Persistence.createEntityManagerFactory("jpa", properties);
     }
 
     public static EntityManager getEntityManager() {
