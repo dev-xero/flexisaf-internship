@@ -7,6 +7,7 @@ Use important Hibernate annotation to design a database table (entity) with at l
 - [Hibernate](https://hibernate.org/orm/): JPA compliant ORM.
 - [PostgreSQL (driver)](https://jdbc.postgresql.org/): Opensource SQL/Relational Database.
 - [Jakarta Persistence API](https://github.com/jakartaee/persistence/): Entity annotations library.
+- [Jakarta Bean Validation API](https://beanvalidation.org/): For application level Entity validation.
 - [Lombok](https://projectlombok.org/): Getters/Setters automation.
 - [Logback](https://logback.qos.ch/): Logging library alongside SLF4J.
 
