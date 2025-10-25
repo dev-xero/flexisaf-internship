@@ -2,7 +2,7 @@ package github.dev.xero.pokemonrest.controllers;
 
 import github.dev.xero.pokemonrest.dto.HttpResponse;
 import github.dev.xero.pokemonrest.dto.pokemon.CreatePokemonDto;
-import github.dev.xero.pokemonrest.models.PokemonModel;
+import github.dev.xero.pokemonrest.models.Pokemon;
 import github.dev.xero.pokemonrest.services.PokemonService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -43,12 +43,12 @@ public class PokemonRestController {
             @ApiResponse(responseCode = "201", description = "Pokemon created successfully"),
 //            @ApiResponse(responseCode = "400", description = "Invalid input or duplicate Pokémon name")
     })
-    public ResponseEntity<HttpResponse<PokemonModel>> post(
+    public ResponseEntity<HttpResponse<Pokemon>> post(
             @Valid @RequestBody CreatePokemonDto dto,
             HttpServletRequest req
     ) {
         try {
-            PokemonModel pokemon = pokemonService.create(dto);
+            Pokemon pokemon = pokemonService.create(dto);
             return ResponseEntity.status(HttpStatus.CREATED)
                     .body(
                             HttpResponse.Created(

@@ -12,7 +12,7 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PokemonModel {
+public class Pokemon {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

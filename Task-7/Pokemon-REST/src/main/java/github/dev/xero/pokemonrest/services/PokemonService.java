@@ -2,7 +2,7 @@ package github.dev.xero.pokemonrest.services;
 
 import github.dev.xero.pokemonrest.dto.pokemon.CreatePokemonDto;
 import github.dev.xero.pokemonrest.models.BaseStats;
-import github.dev.xero.pokemonrest.models.PokemonModel;
+import github.dev.xero.pokemonrest.models.Pokemon;
 import github.dev.xero.pokemonrest.repositories.BaseStatsRepository;
 import github.dev.xero.pokemonrest.repositories.PokemonRepository;
 import org.apache.coyote.BadRequestException;
@@ -19,13 +19,13 @@ public class PokemonService {
         this.baseStatsRepository = baseStatsRepository;
     }
 
-    public PokemonModel create(CreatePokemonDto dto) throws BadRequestException {
+    public Pokemon create(CreatePokemonDto dto) throws BadRequestException {
         // Validation: make sure a pokemon with the same name doesn't already exist.
         if (pokemonRepository.findByName(dto.getName()) != null) {
             throw new BadRequestException("A pokemon with this name already exists!");
         }
 
-        PokemonModel pokemon = new PokemonModel();
+        Pokemon pokemon = new Pokemon();
         pokemon.setName(dto.getName());
         pokemon.setType(dto.getType());
         pokemon.setGeneration(dto.getGeneration());
