@@ -37,11 +37,13 @@ public class Pokemon {
             name = "base_stats_id",
             nullable = false,
             foreignKey = @ForeignKey(name = "fk_pokemon_base_stats")
+
     )
     @JsonProperty("base_stats")
     private BaseStats baseStats;
 
     @Column(name = "evolution_stage", nullable = false)
+    @JsonProperty("evolution_stage")
     private Integer evolutionStage;
 
     @Column(name = "height", nullable = false)

@@ -31,6 +31,9 @@ public class PokemonService {
         pokemon.setName(dto.getName());
         pokemon.setType(dto.getType());
         pokemon.setGeneration(dto.getGeneration());
+        pokemon.setEvolutionStage(dto.getEvolutionStage());
+        pokemon.setWeight(dto.getWeight());
+        pokemon.setHeight(dto.getHeight());
 
         BaseStats baseStats = new BaseStats();
         baseStats.setHp(dto.getHp());
