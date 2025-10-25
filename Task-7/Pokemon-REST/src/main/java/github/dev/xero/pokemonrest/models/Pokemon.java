@@ -1,5 +1,6 @@
 package github.dev.xero.pokemonrest.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,6 +18,7 @@ public class Pokemon {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "poke_id")
+    @JsonProperty("poke_id")
     private UUID pokeId;
 
     @Column(name = "name", nullable = false)
@@ -36,5 +38,6 @@ public class Pokemon {
             nullable = false,
             foreignKey = @ForeignKey(name = "fk_pokemon_base_stats")
     )
+    @JsonProperty("base_stats")
     private BaseStats baseStats;
 }

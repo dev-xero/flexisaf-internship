@@ -8,6 +8,8 @@ import github.dev.xero.pokemonrest.repositories.PokemonRepository;
 import org.apache.coyote.BadRequestException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PokemonService {
     private final PokemonRepository pokemonRepository;
@@ -28,6 +30,7 @@ public class PokemonService {
         Pokemon pokemon = new Pokemon();
         pokemon.setName(dto.getName());
         pokemon.setType(dto.getType());
+
         pokemon.setGeneration(dto.getGeneration());
 
         BaseStats baseStats = new BaseStats();
@@ -42,5 +45,9 @@ public class PokemonService {
         pokemonRepository.save(pokemon);
 
         return pokemon;
+    }
+
+    public List<Pokemon> findAll() {
+        return pokemonRepository.findAll();
     }
 }

@@ -1,5 +1,6 @@
 package github.dev.xero.pokemonrest.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,7 +17,8 @@ public class BaseStats {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID base_stat_id;
+    @JsonProperty("base_stat_id")
+    private UUID baseStatId;
 
     @Column(name = "hp", nullable = false)
     private Integer hp;

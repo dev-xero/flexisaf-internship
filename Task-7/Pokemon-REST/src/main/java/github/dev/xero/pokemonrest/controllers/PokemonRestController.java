@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.List;
+
 @Controller
 @Tag(name = "Pokemon Resource")
 public class PokemonRestController {
@@ -37,13 +39,12 @@ public class PokemonRestController {
         );
     }
 
-    @PostMapping("/create")
+    @PostMapping("pokemon")
     @Operation(summary = "Create a new Pokemon")
     @ApiResponses({
             @ApiResponse(responseCode = "201", description = "Pokemon created successfully"),
-//            @ApiResponse(responseCode = "400", description = "Invalid input or duplicate Pokémon name")
     })
-    public ResponseEntity<HttpResponse<Pokemon>> post(
+    public ResponseEntity<HttpResponse<Pokemon>> createPokemon(
             @Valid @RequestBody CreatePokemonDto dto,
             HttpServletRequest req
     ) {
@@ -66,6 +67,22 @@ public class PokemonRestController {
                     )
             );
         }
+    }
+
+    @GetMapping("pokemon")
+    @Operation(summary = "Fetch all Pokemon")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Fetched all pokemon"),
+    })
+    public ResponseEntity<HttpResponse<List<Pokemon>>> getAllPokemon(
+            HttpServletRequest req
+    ) {
+        List<Pokemon> pokemon = pokemonService.findAll();
+        return ResponseEntity.ok(HttpResponse.Ok(
+                "Fetched all pokemon",
+                req.getRequestURI(),
+                pokemon
+        ));
     }
 
 }
