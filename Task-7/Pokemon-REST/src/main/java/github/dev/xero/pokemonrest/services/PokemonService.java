@@ -1,11 +1,9 @@
 package github.dev.xero.pokemonrest.services;
 
-import github.dev.xero.pokemonrest.dto.HttpResponse;
 import github.dev.xero.pokemonrest.dto.pokemon.CreatePokemonDto;
 import github.dev.xero.pokemonrest.models.PokemonModel;
 import github.dev.xero.pokemonrest.repositories.PokemonRepository;
 import org.apache.coyote.BadRequestException;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
