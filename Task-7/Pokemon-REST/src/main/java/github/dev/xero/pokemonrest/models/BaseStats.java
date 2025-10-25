@@ -16,9 +16,9 @@ import java.util.UUID;
 public class BaseStats {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @JsonProperty("base_stat_id")
-    private UUID baseStatId;
+    private Long baseStatId;
 
     @Column(name = "hp", nullable = false)
     private Integer hp;

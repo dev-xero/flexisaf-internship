@@ -9,6 +9,7 @@ import org.apache.coyote.BadRequestException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class PokemonService {
@@ -51,5 +52,13 @@ public class PokemonService {
 
     public List<Pokemon> findAll() {
         return pokemonRepository.findAll();
+    }
+
+    public Pokemon findById(Long id) throws BadRequestException {
+        Pokemon pokemon = pokemonRepository.findByPokeId(id);
+        if (pokemon == null) {
+            throw new BadRequestException("Pokemon with this id does not exist!");
+        }
+        return pokemon;
     }
 }

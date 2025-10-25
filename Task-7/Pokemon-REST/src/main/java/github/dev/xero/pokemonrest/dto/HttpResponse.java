@@ -54,4 +54,14 @@ public class HttpResponse<T> {
                 null
         );
     }
+
+    public static <T> HttpResponse<T> NotFound(String message, String path) {
+        return new HttpResponse<>(
+                message,
+                null,
+                path,
+                HttpStatus.NOT_FOUND.value(),
+                null
+        );
+    }
 }

@@ -14,11 +14,10 @@ import org.apache.coyote.BadRequestException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @Tag(name = "Pokemon Resource")
@@ -32,7 +31,7 @@ public class PokemonRestController {
     }
 
     @GetMapping("/")
-    @Operation(summary = "Default base endpoint.")
+    @Operation(summary = "Default base endpoint")
     public ResponseEntity<HttpResponse<String>> get() {
         return ResponseEntity.ok(
                 HttpResponse.Ok("Pokemon API v1", "/", null)
@@ -72,17 +71,43 @@ public class PokemonRestController {
     @GetMapping("pokemon")
     @Operation(summary = "Fetch all Pokemon")
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Fetched all pokemon"),
+            @ApiResponse(responseCode = "200", description = "Fetched all Pokemon"),
     })
     public ResponseEntity<HttpResponse<List<Pokemon>>> getAllPokemon(
             HttpServletRequest req
     ) {
         List<Pokemon> pokemon = pokemonService.findAll();
         return ResponseEntity.ok(HttpResponse.Ok(
-                "Fetched all pokemon",
+                "Fetched all Pokemon",
                 req.getRequestURI(),
                 pokemon
         ));
+    }
+
+    @GetMapping("pokemon/{id}")
+    @Operation(summary = "Fetch a Pokemon by Id")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Fetched a Pokemon by Id"),
+    })
+    public ResponseEntity<HttpResponse<Pokemon>> getPokemon(
+            HttpServletRequest req,
+            @PathVariable Long id
+    ) {
+        try {
+            Pokemon pokemon = pokemonService.findById(id);
+            return ResponseEntity.ok(HttpResponse.Ok(
+                    "Fetched a Pokemon by Id",
+                    req.getRequestURI(),
+                    pokemon
+            ));
+        } catch (BadRequestException ex) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                    HttpResponse.NotFound(
+                            ex.getMessage(),
+                            req.getRequestURI()
+                    )
+            );
+        }
     }
 
 }

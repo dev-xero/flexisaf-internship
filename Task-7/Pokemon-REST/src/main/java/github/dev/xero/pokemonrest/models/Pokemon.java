@@ -16,10 +16,10 @@ import java.util.UUID;
 public class Pokemon {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "poke_id")
     @JsonProperty("poke_id")
-    private UUID pokeId;
+    private Long pokeId;
 
     @Column(name = "name", nullable = false)
     private String name;

@@ -7,4 +7,5 @@ import java.util.UUID;
 
 public interface PokemonRepository extends JpaRepository<Pokemon, UUID> {
     Pokemon findByName(String name);
+    Pokemon findByPokeId(Long pokeId);
 }

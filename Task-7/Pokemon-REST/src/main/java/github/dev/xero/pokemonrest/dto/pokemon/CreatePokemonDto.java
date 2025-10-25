@@ -47,12 +47,12 @@ public class CreatePokemonDto {
     public Integer evolutionStage;
 
     @NotNull(message = "Weight is required")
-    @DecimalMin(value = "1.0", message = "Min allowed weight is 1.0 kg")
+    @DecimalMin(value = "0.1", message = "Min allowed weight is 0.1 kg")
     @DecimalMax(value = "120.0", message = "Max allowed weight is 120.0 kg")
     public Double weight;
 
     @NotNull(message = "Height is required")
-    @DecimalMin(value = "0.5", message = "Min allowed height is 0.5 meters")
+    @DecimalMin(value = "0.1", message = "Min allowed height is 0.1 meters")
     @DecimalMax(value = "2.0", message = "Max allowed height is 2.0 meters")
     public Double height;
 
