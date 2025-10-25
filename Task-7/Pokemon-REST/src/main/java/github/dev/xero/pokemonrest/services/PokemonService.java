@@ -1,15 +1,16 @@
 package github.dev.xero.pokemonrest.services;
 
 import github.dev.xero.pokemonrest.dto.pokemon.CreatePokemonDto;
+import github.dev.xero.pokemonrest.dto.pokemon.UpdatePokemonDto;
 import github.dev.xero.pokemonrest.models.BaseStats;
 import github.dev.xero.pokemonrest.models.Pokemon;
 import github.dev.xero.pokemonrest.repositories.BaseStatsRepository;
 import github.dev.xero.pokemonrest.repositories.PokemonRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.apache.coyote.BadRequestException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class PokemonService {
@@ -20,6 +21,23 @@ public class PokemonService {
     public PokemonService(PokemonRepository pokemonRepository, BaseStatsRepository baseStatsRepository) {
         this.pokemonRepository = pokemonRepository;
         this.baseStatsRepository = baseStatsRepository;
+    }
+
+    public List<Pokemon> findAll() {
+        return pokemonRepository.findAll();
+    }
+
+    public Pokemon findById(Long id) throws EntityNotFoundException {
+        return pokemonRepository.findById(id).orElseThrow(() ->
+                new EntityNotFoundException("Pokemon with this id doesn't exist!")
+        );
+    }
+
+    public BaseStats baseStatsById(Long id) throws EntityNotFoundException {
+        Pokemon pokemon = pokemonRepository.findById(id).orElseThrow(() ->
+                new EntityNotFoundException("Pokemon with this id doesn't exist!")
+        );
+        return pokemon.getBaseStats();
     }
 
     public Pokemon create(CreatePokemonDto dto) throws BadRequestException {
@@ -50,15 +68,27 @@ public class PokemonService {
         return pokemon;
     }
 
-    public List<Pokemon> findAll() {
-        return pokemonRepository.findAll();
-    }
+    public Pokemon partialUpdate(Long id, UpdatePokemonDto dto) throws EntityNotFoundException {
+        Pokemon pokemon = pokemonRepository.findById(id).orElseThrow(() ->
+                new EntityNotFoundException("Pokemon with this id doesn't exist!")
+        );
 
-    public Pokemon findById(Long id) throws BadRequestException {
-        Pokemon pokemon = pokemonRepository.findByPokeId(id);
-        if (pokemon == null) {
-            throw new BadRequestException("Pokemon with this id does not exist!");
+        if (dto.getName() != null) {
+            pokemon.setName(dto.getName());
         }
+        if (dto.getGeneration() != null) {
+            pokemon.setGeneration(dto.getGeneration());
+        }
+        if (dto.getEvolutionStage() != null) {
+            pokemon.setEvolutionStage(dto.getEvolutionStage());
+        }
+        if (dto.getWeight() != null) {
+            pokemon.setWeight(dto.getWeight());
+        }
+        if (dto.getHeight() != null) {
+            pokemon.setHeight(dto.getHeight());
+        }
+        pokemonRepository.save(pokemon);
         return pokemon;
     }
 }
