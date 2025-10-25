@@ -1,6 +1,7 @@
 package github.dev.xero.pokemonrest.dto;
 
 import lombok.Data;
+import org.springframework.http.HttpStatus;
 
 import java.time.LocalDateTime;
 
@@ -28,7 +29,18 @@ public class HttpResponse<T> {
                 message,
                 null,
                 path,
-                200,
+                HttpStatus.OK.value(),
+                data
+        );
+    }
+
+
+    public static <T> HttpResponse<T> Created(String message, String path, T data) {
+        return new HttpResponse<>(
+                message,
+                null,
+                path,
+                HttpStatus.CREATED.value(),
                 data
         );
     }
@@ -38,7 +50,7 @@ public class HttpResponse<T> {
                 message,
                 error,
                 path,
-                400,
+                HttpStatus.BAD_REQUEST.value(),
                 null
         );
     }

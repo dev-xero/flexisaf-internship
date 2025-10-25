@@ -5,6 +5,8 @@ import github.dev.xero.pokemonrest.dto.pokemon.CreatePokemonDto;
 import github.dev.xero.pokemonrest.models.PokemonModel;
 import github.dev.xero.pokemonrest.services.PokemonService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
@@ -37,27 +39,32 @@ public class PokemonRestController {
 
     @PostMapping("/create")
     @Operation(summary = "Create a new Pokemon")
+    @ApiResponses({
+            @ApiResponse(responseCode = "201", description = "Pokemon created successfully"),
+//            @ApiResponse(responseCode = "400", description = "Invalid input or duplicate Pokémon name")
+    })
     public ResponseEntity<HttpResponse<PokemonModel>> post(
             @Valid @RequestBody CreatePokemonDto dto,
             HttpServletRequest req
     ) {
         try {
             PokemonModel pokemon = pokemonService.create(dto);
-            return ResponseEntity.ok(
-                    HttpResponse.Ok(
-                            "Pokemon created!",
-                            req.getRequestURI(),
-                            pokemon
+            return ResponseEntity.status(HttpStatus.CREATED)
+                    .body(
+                            HttpResponse.Created(
+                                    "Pokemon created!",
+                                    req.getRequestURI(),
+                                    pokemon
+                            )
+                    );
+        } catch (BadRequestException ex) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                    HttpResponse.BadRequest(
+                            ex.getMessage(),
+                            "Cannot create duplicate Pokemon",
+                            req.getRequestURI()
                     )
             );
-        } catch (BadRequestException ex) {
-           return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
-                   HttpResponse.BadRequest(
-                           ex.getMessage(),
-                           "Cannot create duplicate Pokemon",
-                           req.getRequestURI()
-                   )
-           );
         }
     }
 

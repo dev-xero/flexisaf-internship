@@ -1,7 +1,9 @@
 package github.dev.xero.pokemonrest.services;
 
 import github.dev.xero.pokemonrest.dto.pokemon.CreatePokemonDto;
+import github.dev.xero.pokemonrest.models.BaseStats;
 import github.dev.xero.pokemonrest.models.PokemonModel;
+import github.dev.xero.pokemonrest.repositories.BaseStatsRepository;
 import github.dev.xero.pokemonrest.repositories.PokemonRepository;
 import org.apache.coyote.BadRequestException;
 import org.springframework.stereotype.Service;
@@ -9,10 +11,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class PokemonService {
     private final PokemonRepository pokemonRepository;
+    private final BaseStatsRepository baseStatsRepository;
 
     // Constructor Dependency Injection.
-    public PokemonService(PokemonRepository pokemonRepository) {
+    public PokemonService(PokemonRepository pokemonRepository, BaseStatsRepository baseStatsRepository) {
         this.pokemonRepository = pokemonRepository;
+        this.baseStatsRepository = baseStatsRepository;
     }
 
     public PokemonModel create(CreatePokemonDto dto) throws BadRequestException {
@@ -20,10 +24,21 @@ public class PokemonService {
         if (pokemonRepository.findByName(dto.getName()) != null) {
             throw new BadRequestException("A pokemon with this name already exists!");
         }
+
         PokemonModel pokemon = new PokemonModel();
         pokemon.setName(dto.getName());
         pokemon.setType(dto.getType());
+        pokemon.setGeneration(dto.getGeneration());
+
+        BaseStats baseStats = new BaseStats();
+        baseStats.setHp(dto.getHp());
+        baseStats.setAttack(dto.getAttack());
+
+        pokemon.setBaseStats(baseStats);
+
+        baseStatsRepository.save(baseStats);
         pokemonRepository.save(pokemon);
+
         return pokemon;
     }
 }
