@@ -18,5 +18,6 @@ validate inputs and create a service, repository and controller layer.
 - [PostgreSQL JDBC Driver](https://mvnrepository.com/artifact/org.postgresql/postgresql/)
 - [Lombok](https://mvnrepository.com/artifact/org.projectlombok/lombok/)
 - [Flyway](https://mvnrepository.com/artifact/org.flywaydb/flyway-core/)
+- [Spring Doc OpenAPI](https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui/)
 
 ### Configuration
