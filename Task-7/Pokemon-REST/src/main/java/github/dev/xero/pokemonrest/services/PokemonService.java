@@ -30,7 +30,6 @@ public class PokemonService {
         Pokemon pokemon = new Pokemon();
         pokemon.setName(dto.getName());
         pokemon.setType(dto.getType());
-
         pokemon.setGeneration(dto.getGeneration());
 
         BaseStats baseStats = new BaseStats();

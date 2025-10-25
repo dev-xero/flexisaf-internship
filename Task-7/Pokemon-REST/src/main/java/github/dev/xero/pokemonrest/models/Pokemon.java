@@ -40,4 +40,13 @@ public class Pokemon {
     )
     @JsonProperty("base_stats")
     private BaseStats baseStats;
+
+    @Column(name = "evolution_stage", nullable = false)
+    private Integer evolutionStage;
+
+    @Column(name = "height", nullable = false)
+    private Double height;
+
+    @Column(name = "weight", nullable = false)
+    private Double weight;
 }
