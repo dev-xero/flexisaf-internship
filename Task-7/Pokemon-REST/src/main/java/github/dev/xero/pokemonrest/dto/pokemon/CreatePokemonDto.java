@@ -29,4 +29,14 @@ public class CreatePokemonDto {
     @Max(value = 300, message = "Max allowed attack is 300")
     public Integer attack;
 
+    @NotNull(message = "Defense is required")
+    @Min(value = 10, message = "Min allowed defense is 10")
+    @Max(value = 300, message = "Max allowed defense is 300")
+    public Integer defense;
+
+    @NotNull(message = "Speed is required")
+    @Min(value = 10, message = "Min allowed speed is 10")
+    @Max(value = 300, message = "Max allowed speed is 300")
+    public Integer speed;
+
 }

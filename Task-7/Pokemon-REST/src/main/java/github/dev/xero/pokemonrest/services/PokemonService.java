@@ -33,6 +33,8 @@ public class PokemonService {
         BaseStats baseStats = new BaseStats();
         baseStats.setHp(dto.getHp());
         baseStats.setAttack(dto.getAttack());
+        baseStats.setDefense(dto.getDefense());
+        baseStats.setSpeed(dto.getSpeed());
 
         pokemon.setBaseStats(baseStats);
 

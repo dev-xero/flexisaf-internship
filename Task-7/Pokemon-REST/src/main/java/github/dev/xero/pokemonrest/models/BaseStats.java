@@ -19,15 +19,15 @@ public class BaseStats {
     private UUID base_stat_id;
 
     @Column(name = "hp", nullable = false)
-    private Integer hp = 100;
+    private Integer hp;
 
     @Column(name = "attack", nullable = false)
-    private Integer attack = 50;
+    private Integer attack;
 
     @Column(name = "defense", nullable = false)
-    private Integer defense = 50;
+    private Integer defense;
 
     @Column(name = "speed", nullable = false)
-    private Integer speed = 50;
+    private Integer speed;
 
 }
