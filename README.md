@@ -11,3 +11,5 @@ Backend Engineering - advanced track.
 | 5        | Show Implementation to Database Migration using Flyway. You can make use of a DB from the previous progress report. | `./Task-5` |
 | 6        | Practice Dependency Injection using constructors and setters and fields. | `./Task-6` |
 | 7        | Create a spring boot application with at least 4 endpoints, implement exception handling, validate inputs and create a service, repository and controller layer. | `./Task-7` |
+| 8        | Apply best practices learnt here to previous projects, examples to be shown. | `./Task-8` |
+| 9        | Write test cases for previous projects. | `./Task-9` |
